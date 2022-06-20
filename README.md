@@ -32,3 +32,4 @@ In this task, we are interested in analysing the data points over the time perio
     * The average number of violations per month for all McDonalds compared with the average for all Burger Kings. This will require a new query as it is not grouped by postal code. If there were 3 McDonalds stores with 4, 5 and 9 violations for July, then the average for July would be 6 ((4+5+9)/3 stores)
     * Query the Violations table and retrieve all distinct violation codes and descriptions
     * Using Regular Expressions (NOT SQL), filter the resulting data to print out a list of all violation codes and descriptions that involve the word ‘food’.
+    
