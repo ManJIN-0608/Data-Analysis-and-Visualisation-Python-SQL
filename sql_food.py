@@ -44,3 +44,26 @@ for row in distinctive_businesses:
     cursor.execute(sql)
     
 connection.commit()
+
+#print a count of the violations for each business that has at least 1 violation
+sql = """ SELECT count(v.serial_number), i.facility_name
+         FROM Inspections i, Violations v
+         WHERE i.serial_number = v.serial_number
+         GROUP BY v.serial_number
+         HAVING count(v.serial_number)>=1
+         ORDER BY count(v.serial_number);"""
+
+# sql = """SELECT c, facility_name
+#         FROM (SELECT count(v.serial_number) as c, i.facility_name
+# 	          FROM Inspections i, Violations v
+# 	          WHERE i.serial_number = v.serial_number
+# 	          GROUP BY v.serial_number
+# 	          ORDER BY count(v.serial_number))
+#         WHERE c>2;"""
+cursor.execute(sql)
+b = cursor.fetchall()
+for s in b:
+    print(s)
+    break
+
+connection.close()

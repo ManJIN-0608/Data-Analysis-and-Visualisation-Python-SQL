@@ -22,6 +22,10 @@ Create a Python script (excel_food.py) to perform the following tasks:
 - Create a sheet named “Violations Types”.
 - Query the database and calculate the number of each type of violation based on violationcode.
 - Write the relevant data into the worksheet you created. This should show the total numberof violations, then list how that is broken down by violation code, including the descriptionof the violation code. For example:
+Code  Description     Count
+F001  Dirty floors     400
+F002  Rotten food      135
+      Total violations 535
 
 ## Task 4 – Numpy in Python
 In this task, we are interested in analysing the data points over the time period cocered. You will need to create a Python script (numpy_food.py) to perform the following tasks:

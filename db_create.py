@@ -11,9 +11,13 @@ ws2 = wb2['violations']
 #loop each lines in inspections.xlsx as tuples in a list
 ws1_cells = []
 for rows in ws1.iter_rows(min_row = 2, max_col = 20, max_row = 191372):
+    #row_cells = (rows[0], rows[1], rows[2])
     row_cells = []
     for cell in rows:
-        row_cells.append(str(cell.value))
+        if "\"" in str(cell.value):
+            row_cells.append(str(cell.value).replace("\"", "\"\""))
+        else:
+            row_cells.append(str(cell.value))
     ws1_cells.append(tuple(row_cells))
 
 #loop each lines in violations.xlsx as tuples in a list
@@ -21,7 +25,10 @@ ws2_cells = []
 for rows in ws2.iter_rows(min_row = 2, max_col = 5,max_row = 906015):
    row_cells = []
    for cell in rows:
-        row_cells.append(str(cell.value))
+        if "\"" in str(cell.value):
+            row_cells.append(str(cell.value).replace("\"", "\"\""))
+        else:
+            row_cells.append(str(cell.value))
    ws2_cells.append(tuple(row_cells))
 
 connection = sqlite3.connect('company.db')
@@ -99,7 +106,7 @@ for p in ws1_cells:
     sql = format_str.format(
     a = p[0], 
     b = p[1], 
-    # 把双引号替换成单引号
+    # 在SQL语句中，双引号的转义还是双引号"-->""
     c = p[2].replace("\"","\"\""), 
     d = p[3], 
     e = p[4],
