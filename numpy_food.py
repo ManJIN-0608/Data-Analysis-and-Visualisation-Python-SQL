@@ -110,6 +110,11 @@ for data in ca_month_violations:
 # plt.xticks(rotation=90)
 # plt.xlabel('Time')
 # plt.ylabel('Violations')
+# # 设置数字标签
+# for a, b in zip(highest_time, highest_values):
+#     plt.text(a, b, b, ha='center', va='bottom', fontsize=15)
+# for a, b in zip(avg_time, avg_values):
+#     plt.text(a, b, b, ha='center', va='bottom', fontsize=15)
 # plt.show()
 
 #plot two lines that the lowest total violations and the average number of violations each month
@@ -120,6 +125,11 @@ for data in ca_month_violations:
 # plt.xticks(rotation=90)
 # plt.xlabel('Time')
 # plt.ylabel('Violations')
+# # 设置数字标签
+# for a, b in zip(lowest_time, lowest_values):
+#     plt.text(a, b, b, ha='center', va='bottom', fontsize=15)
+# for a, b in zip(avg_time, avg_values):
+#     plt.text(a, b, b, ha='center', va='bottom', fontsize=15)
 # plt.show()
 
 connection = sqlite3.connect('company.db')
@@ -158,15 +168,20 @@ for data in bk_month_violations:
     bk_values.append(data[2]//data[1])
 
 #plot two lines that the McDonalds average violations and the Burger Kings average violations each month    
-# fig, ax3 = plt.subplots() 
-# ax3.plot(mc_time, mc_values,'r-', label = 'McDonald')
-# ax3.plot(bk_time, bk_values, 'b-', label = 'Burger King')
-# ax3.legend()
-# plt.xticks(rotation=90)
-# plt.xlabel('Time')
-# plt.ylabel('Violations')
-# fig.tight_layout()
-# plt.show()
+fig, ax3 = plt.subplots() 
+ax3.plot(mc_time, mc_values,'r-', label = 'McDonald')
+ax3.plot(bk_time, bk_values, 'b-', label = 'Burger King')
+ax3.legend()
+plt.xticks(rotation=90)
+plt.xlabel('Time')
+plt.ylabel('Violations')
+# 设置数字标签
+for a, b in zip(mc_time, mc_values):
+    plt.text(a, b, b, ha='center', va='bottom', fontsize=15)
+for a, b in zip(bk_time, bk_values):
+    plt.text(a, b, b, ha='center', va='bottom', fontsize=15)
+fig.tight_layout()
+plt.show()
 
 # Query the Violations table and retrieve all distinct violation codes and descriptions
 sql = """ SELECT distinct v.violation_code, v.violation_description
